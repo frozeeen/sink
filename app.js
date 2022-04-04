@@ -60,15 +60,15 @@ async function sink_now(url, param, config){
 			}
 		}
 		console.log("DATA", requestData);
-		// var result = await fetch(url, {
-		// 	method: "POST",
-		// 	body: JSON.stringify(requestData)
-		// });
+		var result = await fetch(url, {
+			method: "POST",
+			body: JSON.stringify(requestData)
+		});
 
-		// if( i == 1 && result >= 200 && result <= 300 ){
-		// 	console.log("Terminating:", result.status, " code");
-		// 	break;
-		// }
+		if( i == 1 && result >= 200 && result <= 300 ){
+			console.log("Terminating:", result.status, " code");
+			break;
+		}
 
 		if( i == 1 ){
 			console.log("Allowed: 🟢");
