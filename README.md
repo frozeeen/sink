@@ -1,7 +1,7 @@
 # SINK ⛵
 Fish generator for Phishers.
 
-Open console and paste use code to generate handle, password and static planet.
+Open console and paste this code to generate `handle`, `password` and static `planet`.
 ```javascript
 sink_now("http://localhost/sink/3vilboat/login.php", {
     "handle": "!EMAIL",
