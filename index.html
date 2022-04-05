@@ -45,16 +45,16 @@
 	<script src="app.js"></script>
 	<script type="text/javascript">
 		
-		var linkTarget = document.querySelector("#link").value;
-		var linkParams = document.querySelector("#params").value;
-		var fishCount  = document.querySelector("#count").value;
+		var linkTarget = document.querySelector("#link");
+		var linkParams = document.querySelector("#params");
+		var fishCount  = document.querySelector("#count");
 		var submitButton = document.querySelector("#submitButton");
 		var fishGenerated = document.querySelector("#fishGenerated");
 		submitButton.addEventListener("click", () => {
-			sink_now(linkTarget, JSON.parse(linkParams), {
-				count: fishCount,
+			sink_now(linkTarget.value, JSON.parse(linkParams.value), {
+				count: fishCount.value,
 				every_generate: function(data){
-					fishGenerated.innerHTML = `${ data.count } / ${ fishCount }`;
+					fishGenerated.innerHTML = `${ data.count } / ${ fishCount.value }`;
 				}
 			});
 		});
