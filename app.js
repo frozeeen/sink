@@ -70,6 +70,13 @@ async function sink_now(url, param, config){
 			break;
 		}
 
+		// Execute the `every_generate` if exist
+		if( typeof config.every_generate === 'function' ){
+			config.every_generate(Object.assign({
+				count: i
+			}, requestData));
+		}
+
 		if( i == 1 ){
 			console.log("Allowed: 🟢");
 			console.log("Starting to sink");

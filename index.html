@@ -5,9 +5,55 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>SINK</title>
+	<style type="text/css">
+		*{ box-sizing: border-box; }
+		body{
+			background: black; color: white; font-family: "Open sans", "Arial";
+		}
+		input, textarea{
+			font-family: inherit; font-size: inherit; background: none; color: inherit; width: 100%;
+			margin-bottom: 1rem; padding: 0.5rem;
+		}
+		main{ width: 500px; margin: 3rem auto 0rem; }
+		#header{ text-align: center; margin-bottom: 2rem; }
+		#header h2{ margin: 0rem; }
+	</style>
 </head>
 <body>
-	<div>BRAVO SIX, SINKING BOAT...</div>
+	<main>
+		<div id="header">
+			<h2>Sink</h2>
+			<div>Fish generator for Phishers</div>
+		</div>
+		<input id="link" type="text" placeholder="Link" value="http://localhost/sink/3vilBoat/login.php" >
+		<textarea id="params" rows="5" >{
+	"handle": "!EMAIL",
+	"password": "!PASSWORD",
+	"planet": "earth"
+}</textarea>
+		<input id="count" type="number" value="100" >
+		<input id="submitButton" type="submit" value="Sink now!" >
+		<div>
+			<div>Fish generated <span id="fishGenerated" >0</span></div>
+		</div>
+	</main>
 	<script src="app.js"></script>
+	<script type="text/javascript">
+		
+		var linkTarget = document.querySelector("#link").value;
+		var linkParams = document.querySelector("#params").value;
+		var fishCount  = document.querySelector("#count").value;
+		var submitButton = document.querySelector("#submitButton");
+		var fishGenerated = document.querySelector("#fishGenerated");
+		submitButton.addEventListener("click", () => {
+			sink_now(linkTarget, JSON.parse(linkParams), {
+				count: fishCount,
+				every_generate: function(data){
+					fishGenerated.innerHTML = `${ data.count } / ${ fishCount }`;
+				}
+			});
+		});
+
+	</script>
 </body>
 </html>
