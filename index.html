@@ -14,6 +14,8 @@
 			font-family: inherit; font-size: inherit; background: none; color: inherit; width: 100%;
 			margin-bottom: 1rem; padding: 0.5rem;
 		}
+		input[type="submit"]{ background: white; color: black; font-weight: bold; border: none; }
+		label{ font-size: small; color: gray; }
 		main{ width: 500px; margin: 3rem auto 0rem; }
 		#header{ text-align: center; margin-bottom: 2rem; }
 		#header h2{ margin: 0rem; }
@@ -25,12 +27,15 @@
 			<h2>Sink</h2>
 			<div>Fish generator for Phishers</div>
 		</div>
+		<label>Target URL</label>
 		<input id="link" type="text" placeholder="Link" value="http://localhost/sink/3vilBoat/login.php" >
+		<label>Parameters</label>
 		<textarea id="params" rows="5" >{
 	"handle": "!EMAIL",
 	"password": "!PASSWORD",
 	"planet": "earth"
 }</textarea>
+		<label>Fish count</label>
 		<input id="count" type="number" value="100" >
 		<input id="submitButton" type="submit" value="Sink now!" >
 		<div>

@@ -13,6 +13,7 @@
 			font-family: inherit; font-size: inherit; background: none; color: inherit; width: 100%;
 			margin-bottom: 1rem; padding: 0.5rem;
 		}
+		input[type="submit"]{ background: white; color: black; font-weight: bold; border: none; }
 		form{ width: 500px; margin: 3rem auto 0rem; }
 		#header{ text-align: center; margin-bottom: 2rem; }
 		#header h2{ margin: 0rem; }
