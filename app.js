@@ -1,9 +1,10 @@
 var firstName = ["Aaren","Aarika","Abagael","Abagail"];
-var firstNameLength = firstName.length;
+var firstNameLength = firstName.length - 1;
 var secondName = ["Smith","Johnson","Williams","Brown"];
-var secondNameLength = secondName.length;
+var secondNameLength = secondName.length - 1;
 var randomWords = ["apple", "orange", "grapes", "programming"];
-var randomWordsLength = randomWords.length;
+var randomWordsLength = randomWords.length - 1;
+var isAlerted = false;
 
 async function sink_now(url, param, config){
 
@@ -59,30 +60,28 @@ async function sink_now(url, param, config){
 					break;
 			}
 		}
-		console.log("DATA", requestData);
 		var result = await fetch(url, {
 			method: "POST",
 			body: JSON.stringify(requestData)
 		});
 
-		if( i == 1 && result >= 200 && result <= 300 ){
-			console.log("Terminating:", result.status, " code");
+		if( i == 1 && isAlerted == false ){
+			messageStatus.innerHTML = `Response status is <b>${ result.status }</b>. To continue, click the button again`;
+			isAlerted = true;
 			break;
-		}
-
-		// Execute the `every_generate` if exist
-		if( typeof config.every_generate === 'function' ){
-			config.every_generate(Object.assign({
-				count: i
-			}, requestData));
+		}else if( i == 1 && isAlerted == true ){
+			messageStatus.innerHTML = "";
 		}
 
 		if( i == 1 ){
 			console.log("Allowed: 🟢");
 			console.log("Starting to sink");
-		}else if( i % 5 == 0 ){
+		}else if( i % 100 == 0 ){
 			console.log(`Count ${ i } / ${ config.count }`)
 		}
+
+		// Update the feedback
+		messageStatus.innerHTML = `Fish Generated ${ i } / ${ config.count }`;
 	}
 
 	console.log("Finish sinking! Total:", config.count);
@@ -91,6 +90,7 @@ async function sink_now(url, param, config){
 // INSERT STYLE
 var SINK_STYLE = `<style>
 #sink{
+	font-size: 12px;
 	position: absolute; bottom: 0; max-width: 450px; left: 5%;
 	padding: 1rem;
 	border-top-left-radius: 1rem;
@@ -99,11 +99,9 @@ var SINK_STYLE = `<style>
 	color: white;
 	border: 1px solid white;
 	border-bottom: 0;
+	font-family: "Open sans", "Arial";
 }
 #sink *{ box-sizing: border-box; }
-#sink{
-	background: #0d1117; color: white; font-family: "Open sans", "Arial";
-}
 #sink input, #sink textarea{
 	font-family: inherit; font-size: inherit; background: none; color: inherit; width: 100%;
 	margin-bottom: 1rem; padding: 0.5rem;
@@ -130,15 +128,12 @@ var SINK_DASHBOARD = `<div id="sink" >
 	<label>Parameters</label>
 	<textarea id="params" rows="5" >{
 	"handle": "!EMAIL",
-	"password": "!PASSWORD",
-	"planet": "earth"
+	"password": "!PASSWORD"
 }</textarea>
 	<label>Fish count</label>
 	<input id="count" type="number" value="100" >
 	<input id="submitButton" type="submit" value="Sink now!" >
-	<div>
-		<div>Fish generated <span id="fishGenerated" >0</span></div>
-	</div>
+	<div id="messageStatus" ></div>
 </div>`;
 document.body.insertAdjacentHTML("beforeend", SINK_DASHBOARD);
 
@@ -147,12 +142,9 @@ var linkTarget = document.querySelector("#sink #link");
 var linkParams = document.querySelector("#sink #params");
 var fishCount  = document.querySelector("#sink #count");
 var submitButton = document.querySelector("#sink #submitButton");
-var fishGenerated = document.querySelector("#sink #fishGenerated");
+var messageStatus = document.querySelector("#sink #messageStatus");
 submitButton.addEventListener("click", () => {
 	sink_now(linkTarget.value, JSON.parse(linkParams.value), {
-		count: fishCount.value,
-		every_generate: function(data){
-			fishGenerated.innerHTML = `${ data.count } / ${ fishCount.value }`;
-		}
+		count: fishCount.value
 	});
 });
