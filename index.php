@@ -1,0 +1,1 @@
+<?php header("location: https://github.com/frozeeen/sink"); ?>
