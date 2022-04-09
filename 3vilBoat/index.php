@@ -32,7 +32,5 @@
 		<input type="password" name="password" placeholder="Password" />
 		<input type="submit" value="Submit" />
 	</form>
-
-	<script type="text/javascript" src="../app.js" ></script>
 </body>
 </html>

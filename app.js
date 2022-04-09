@@ -126,7 +126,7 @@
 			<div>Fish generator for Phishers</div>
 		</div>
 		<label>Target URL</label>
-		<input id="link" type="text" placeholder="Link" value="http://localhost/sink/3vilBoat/login.php" >
+		<input id="link" type="text" placeholder="Link" value="${ window.location.origin }" >
 		<label>Parameters</label>
 		<textarea id="params" rows="5" >{
 		"handle": "!EMAIL",
