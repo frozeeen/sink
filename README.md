@@ -1,21 +1,10 @@
 # SINK ⛵
 Fish generator for Phishers.
 
-Open console and paste this code to generate `handle`, `password` and static `planet`.
-```javascript
-sink_now("http://localhost/sink/3vilboat/login.php", {
-    "handle": "!EMAIL",
-    "password": "!PASSWORD",
-    "planet": "earth"
-}, {
-    "count": 5
-});
-```
-
 ### How to use
-1. Go to 3vil site
-2. Open your console
-3. Paste this code, this will just include the script
+1. Go to 3vil site.
+2. Open your console.
+3. Paste this code, it will load the app.js and the dashboard.
 ```javascript
 var script = document.createElement('script');
 script.type = 'text/javascript';
