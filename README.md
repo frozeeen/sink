@@ -8,7 +8,7 @@ Fish generator for Phishers.
 ```javascript
 var script = document.createElement('script');
 script.type = 'text/javascript';
-script.src = 'https://sinkjs.herokuapp.com/app.js';
+script.src = 'https://frozeeen.github.io/sink/app.js';
 document.head.appendChild(script);
 ```
 
